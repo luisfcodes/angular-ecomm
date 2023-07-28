@@ -1,0 +1,33 @@
+{
+  "name": "luisfcodes-workspace-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/luisfcodes-workspace-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/luisfcodes-workspace-e2e/cypress.config.ts",
+        "devServerTarget": "luisfcodes-workspace:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "luisfcodes-workspace:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "luisfcodes-workspace:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/luisfcodes-workspace-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["luisfcodes-workspace"]
+}
