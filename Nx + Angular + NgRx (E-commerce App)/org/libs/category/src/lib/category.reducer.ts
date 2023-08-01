@@ -1,20 +1,28 @@
 import { createReducer, on } from "@ngrx/store";
-import { categoryActions } from "./category.action";
+import { categoryActionsSuccess, categoryActionsError } from "./category.action";
 
-interface CategoryState {
+export interface CategoryState {
   categories: string[];
   currentCategory: string;
+  error: string;
 }
 
 const initialState: CategoryState = {
   categories: [],
-  currentCategory: ''
+  currentCategory: '',
+  error: '',
 }
 
 export const categoryReducer = createReducer(
   initialState,
-  on(categoryActions, (state, action) => ({
+  on(categoryActionsSuccess, (state, action) => ({
     ...state,
-    categories: state.categories,
+    categories: action.categories,
+    error: '',
+  })),
+  on(categoryActionsError, (state, action) => ({
+    ...state,
+    categories: [],
+    error: action.error,
   })),
 )
