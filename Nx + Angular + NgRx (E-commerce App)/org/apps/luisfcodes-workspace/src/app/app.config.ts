@@ -1,6 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import {
   provideRouter,
+  withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from './app.routes';
@@ -12,11 +13,11 @@ import { CategoryEffects, categoryFeature } from '@org/category';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation(), withComponentInputBinding()),
     provideHttpClient(),
     provideAnimations(),
     provideStore(),
     provideState(categoryFeature),
-    provideEffects([CategoryEffects])
+    provideEffects([CategoryEffects]),
   ],
 };

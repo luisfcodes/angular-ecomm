@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   title = 'luisfcodes-workspace';
 
   // categories$ = inject(CategoryService).getCategories();
-  categories$ = this.store.select(selectCategories);
 
   constructor(private readonly store: Store) {}
 
