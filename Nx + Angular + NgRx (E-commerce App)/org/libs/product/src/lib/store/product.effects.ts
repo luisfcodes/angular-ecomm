@@ -25,8 +25,8 @@ export const loadProductsByCategory = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
       ofType(productActions.loadProductByCategory),
-      exhaustMap(() =>
-        productService.getProductByCategory('jewelery').pipe(
+      exhaustMap((action) =>
+        productService.getProductByCategory(action.category).pipe(
           map((products: Product[]) =>
             productActions.productSuccess({ products }),
           ),

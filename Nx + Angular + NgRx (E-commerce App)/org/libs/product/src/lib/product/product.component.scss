@@ -11,14 +11,18 @@
 .row {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
+  padding: 1rem;
 
   img {
     width: 200px;
     height: 200px;
     object-fit: contain;
     margin: 0 auto;
+  }
+
+  .description {
+    font-size: .75rem;
   }
 }

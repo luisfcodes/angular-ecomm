@@ -12,9 +12,9 @@ export interface Product {
 export const productActions = createActionGroup({
   source: 'Product',
   events: {
-    'Load Product': emptyProps(),
-    'Load Product By Category': emptyProps(),
-    'Product Success': props<{ products: Product[] }>(),
-    'Product Failure': props<{ error: string }>(),
+    loadProduct: emptyProps(),
+    loadProductByCategory: props<{ category: string }>(),
+    productSuccess: props<{ products: Product[] }>(),
+    productFailure: props<{ error: string }>(),
   }
 })
