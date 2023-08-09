@@ -9,8 +9,12 @@ import { loadProducts, productFeature, loadProductsByCategory } from '@org/produ
 export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'product',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('@org/user').then((m) => m.LoginComponent),
   },
   {
     path: 'product',
