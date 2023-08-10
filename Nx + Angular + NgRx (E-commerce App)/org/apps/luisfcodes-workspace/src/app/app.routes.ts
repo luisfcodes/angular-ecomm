@@ -5,6 +5,8 @@ import { provideState } from '@ngrx/store';
 import { cartFeature, loadCart } from '@org/cart';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { loadProducts, productFeature, loadProductsByCategory } from '@org/product';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { loginGuard } from '@org/user'
 
 export const appRoutes: Route[] = [
   {
@@ -23,6 +25,7 @@ export const appRoutes: Route[] = [
       provideState(productFeature),
       provideEffects({loadProducts, loadProductsByCategory})
     ],
+    canMatch: [loginGuard],
   },
   {
     path: 'product/:categoryName',
@@ -32,6 +35,7 @@ export const appRoutes: Route[] = [
       provideState(productFeature),
       provideEffects({loadProducts, loadProductsByCategory})
     ],
+    canMatch: [loginGuard],
   },
   {
     path: 'cart',

@@ -2,14 +2,14 @@
   <mat-form-field>
     <input type="text" matInput placeholder="username" formControlName="username" />
     <mat-error *ngIf="loginForm.get('username')?.hasError">
-     Invalid email!
+     Invalid user!
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input type="password" matInput placeholder="password" formControlName="password" />
     <mat-error *ngIf="loginForm.get('password')?.hasError">
-      Invalid password, should be at least 6 characters and max 16 characters!
+      Invalid password, should be at least 5 characters and max 16 characters!
      </mat-error>
   </mat-form-field>
 

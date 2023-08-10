@@ -4,6 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginService } from '../store/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'org-login',
@@ -21,11 +23,24 @@ import { MatButtonModule } from '@angular/material/button';
 export class LoginComponent {
 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
+    username: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
+    password: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)]}),
   })
 
+  constructor(private loginService: LoginService, private router: Router) { }
+
   login(){
-    console.log(this.loginForm.value);
+    if(this.loginForm.value.username && this.loginForm.value.password){
+      this.loginService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe({
+        next: (res) => {
+          console.log(res)
+          this.loginService.isLoggedIn = true;
+          this.router.navigate(['/product'])
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
   }
 }
