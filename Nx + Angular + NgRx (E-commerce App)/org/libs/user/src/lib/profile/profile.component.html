@@ -7,3 +7,51 @@
 <hr />
 
 {{ profileForm.value | json }}
+
+<form [formGroup]="profileForm">
+  <div formGroupName="name">
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="firstname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lastname" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Phone" formControlName="phone" />
+  </mat-form-field>
+
+  <div formGroupName="address">
+    <mat-form-field>
+      <input matInput placeholder="City" formControlName="city" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Street" formControlName="street" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Zip Code" formControlName="zipcode" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Number" formControlName="number" />
+    </mat-form-field>
+
+    <div formGroupName="geolocation">
+      <mat-form-field>
+        <input matInput placeholder="Latitude" formControlName="lat" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Longitude" formControlName="long" />
+      </mat-form-field>
+    </div>
+  </div>
+</form>
