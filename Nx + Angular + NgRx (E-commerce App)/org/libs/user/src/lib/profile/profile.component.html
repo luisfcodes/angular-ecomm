@@ -8,50 +8,110 @@
 
 {{ profileForm.value | json }}
 
-<form [formGroup]="profileForm">
+<form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+  <mat-form-field>
+    <mat-label>ID</mat-label>
+    <input matInput formControlName="id"/>
+  </mat-form-field>
+
   <div formGroupName="name">
     <mat-form-field>
-      <input matInput placeholder="First Name" formControlName="firstname" />
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstname" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Last Name" formControlName="lastname" />
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastname" />
     </mat-form-field>
   </div>
 
   <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email" />
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Phone" formControlName="phone" />
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" />
   </mat-form-field>
 
   <div formGroupName="address">
     <mat-form-field>
-      <input matInput placeholder="City" formControlName="city" />
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Street" formControlName="street" />
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Zip Code" formControlName="zipcode" />
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipcode" />
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Number" formControlName="number" />
+      <mat-label>Number</mat-label>
+      <input matInput type="number" formControlName="number" />
     </mat-form-field>
 
     <div formGroupName="geolocation">
       <mat-form-field>
-        <input matInput placeholder="Latitude" formControlName="lat" />
+        <mat-label>Latitude</mat-label>
+        <input matInput type="number" formControlName="lat" />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Longitude" formControlName="long" />
+        <mat-label>Longitude</mat-label>
+        <input matInput type="number" formControlName="long" />
       </mat-form-field>
     </div>
   </div>
+
+  <!-- <button mat-raised-button color="primary" type="button" (click)="addControl()">
+    Add Address
+  </button> -->
+
+  <!-- <div formArrayName="address">
+    <div *ngFor="let address of address.controls; let i = index">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Street</mat-label>
+          <input matInput formControlName="street" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Zip Code</mat-label>
+          <input matInput formControlName="zipcode" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Number</mat-label>
+          <input matInput type="number" formControlName="number" />
+        </mat-form-field>
+
+        <div formGroupName="geolocation">
+          <mat-form-field>
+            <mat-label>Latitude</mat-label>
+            <input matInput type="number" formControlName="lat" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Longitude</mat-label>
+            <input matInput type="number" formControlName="long" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <button [disabled]="profileForm.dirty && profileForm.invalid" mat-raised-button color="primary" type="submit">
+    Update Profile
+  </button>
 </form>

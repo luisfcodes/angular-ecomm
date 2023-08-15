@@ -2,7 +2,7 @@ import { Component, OnInit, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../store/user.service';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop'
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,9 +30,13 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
+  get address(){
+    return this.profileForm.get('address') as FormArray
+  }
+
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      id: ['', Validators.required],
+      id: [{value: '', disabled: true}, Validators.required],
       email: ['', Validators.required],
       phone: [''],
       name: this.fb.group({
@@ -49,6 +53,9 @@ export class ProfileComponent implements OnInit {
           long: ['', Validators.required],
         })
       }),
+      // address: this.fb.array([
+      //   this.addAddress()
+      // ]),
     })
 
     this.loadProfile()
@@ -57,6 +64,29 @@ export class ProfileComponent implements OnInit {
   loadProfile() {
     this.userService.getUser().subscribe((user: User) => {
       this.profileForm.patchValue(user)
+    })
+  }
+
+  addAddress() {
+    return this.fb.group({
+      city: ['', Validators.required],
+      street: [''],
+      number: [''],
+      zipcode: [''],
+      geolocation: this.fb.group({
+        lat: ['', Validators.required],
+        long: ['', Validators.required],
+      })
+    })
+  }
+
+  addControl(){
+    this.address.push(this.addAddress())
+  }
+
+  updateProfile(){
+    this.userService.updateUser(this.profileForm.getRawValue()).subscribe((user: User) => {
+      console.log(user)
     })
   }
 }
