@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { productActions } from '../store/product.action';
-import { selectProducts } from '../store/product.selector';
+import { productFeature } from '../store/product.state';
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
 
@@ -23,7 +23,7 @@ export class ProductComponent {
   }
   // @Input() test!: string; Testing data from appRoutes
 
-  products$ = this.store.select(selectProducts);
+  products$ = this.store.select(productFeature.selectProducts);
 
   constructor(private readonly store: Store) {}
 

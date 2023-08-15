@@ -10,6 +10,11 @@ export const selectCart = createSelector(
   (state) => state.cart
 );
 
+export const selectCurrentCart = createSelector(
+  selectCartState,
+  (state) => state.currentCart
+)
+
 export const selectError = createSelector(
   selectCartState,
   (state) => state.error
