@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { cartActions } from '../store/cart.action'
-import { selectCart, selectCurrentCart } from '../store/cart.selector'
+import { userCartSelector } from '../store/cart.selector'
 
 @Component({
   selector: 'org-cart',
@@ -13,7 +13,7 @@ import { selectCart, selectCurrentCart } from '../store/cart.selector'
 })
 export class CartComponent implements OnInit {
 
-  cart$ = this.store.select(selectCurrentCart)
+  cart$ = this.store.select(userCartSelector)
 
   constructor(private readonly store: Store) {}
 

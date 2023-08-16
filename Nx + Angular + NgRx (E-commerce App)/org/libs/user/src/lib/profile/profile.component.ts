@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { User } from '../store/user.interface';
+import { Store } from '@ngrx/store';
+import { userFeature } from '../store/user.state';
 
 @Component({
   selector: 'org-profile',
@@ -23,11 +25,14 @@ export class ProfileComponent implements OnInit {
 
   fullName = computed(() => `${this.user()?.name.firstname} ${this.user()?.name.lastname}`) // computed receives a callback function that returns a value of the Signal
 
+  profile$ = this.store.select(userFeature.selectUser)
+
   profileForm!: FormGroup
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) { }
 
   get address(){
@@ -62,8 +67,13 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile() {
-    this.userService.getUser().subscribe((user: User) => {
-      this.profileForm.patchValue(user)
+    // this.userService.getUser().subscribe((user: User) => {
+    //   this.profileForm.patchValue(user)
+    // })
+    this.profile$.subscribe({
+      next: (user: User | undefined) => {
+        this.profileForm.patchValue(user || {})
+      }
     })
   }
 

@@ -1,1 +1,13 @@
 {{ cart$ | async | json }}
+
+<ng-container *ngIf="cart$ | async as cart">
+  <h1>{{ cart.user.name.firstname }} {{ cart.user.name.lastname }}</h1>
+  <p>{{ cart.user.email }}</p>
+  <p>{{ cart.user.phone }}</p>
+
+  <div>
+    <h2>Address</h2>
+    <p>{{ cart.user.address.street }}</p>
+    <p>{{ cart.user.address.city }}</p>
+  </div>
+</ng-container>

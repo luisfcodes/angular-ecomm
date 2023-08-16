@@ -10,6 +10,7 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { CategoryEffects, categoryFeature } from '@org/category';
+import { userFeature, loadUserProfile } from '@org/user';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideStore(),
     provideState(categoryFeature),
-    provideEffects([CategoryEffects]),
+    provideState(userFeature),
+    provideEffects([CategoryEffects, { loadUserProfile }]),
   ],
 };
