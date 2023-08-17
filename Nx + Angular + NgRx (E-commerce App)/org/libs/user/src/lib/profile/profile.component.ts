@@ -1,14 +1,14 @@
 import { Component, OnInit, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../store/user.service';
+import { UserService } from '@org/commom/store';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop'
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { User } from '../store/user.interface';
+import { User } from '@org/commom/store';
 import { Store } from '@ngrx/store';
-import { userFeature } from '../store/user.state';
+import { userFeature } from '@org/commom/store';
 
 @Component({
   selector: 'org-profile',

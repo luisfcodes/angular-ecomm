@@ -3,13 +3,19 @@ import { cartActions, Cart } from "./cart.action";
 
 export interface CartState {
   cart: Cart[];
-  currentCart: Cart | undefined;
+  currentCart: Cart;
   error: string;
 }
 
-export const initialState: CartState = {
+const initialState: CartState = {
   cart: [],
-  currentCart: undefined,
+  currentCart: {
+    id: 0,
+    userId: 0,
+    date: new Date(),
+    products: [],
+    productDetails: []
+  },
   error: ''
 }
 
@@ -32,14 +38,22 @@ export const cartReducer = createReducer(
   })),
   on(cartActions.cartByIdFailure, (state, action) => ({
     ...state,
-    currentCart: undefined,
+    currentCart: initialState.currentCart,
     error: action.error
   })),
-  // on(cartActions.addProductToCart, (state, action) => ({
-  //   ...state,
-  //   currentCart: {
-  //     ...state.currentCart,
-
-  //   }
-  // }))
+  on(cartActions.addProductToCart, (state, action) => ({
+    ...state,
+    cart: [...state.cart],
+    error: '',
+    currentCart: {
+      ...state.currentCart,
+      products: [
+        ...state.currentCart.products,
+        {
+          productId: action.product.id,
+          quantity: 1
+        }
+      ]
+    }
+  }))
 )

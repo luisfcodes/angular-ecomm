@@ -7,7 +7,7 @@ export interface UserState {
   error: string;
 }
 
-export const initialState: UserState = {
+const initialState: UserState = {
   user: undefined,
   error: ''
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { cartActions } from '../store/cart.action'
-import { userCartSelector } from '../store/cart.selector'
+import { cartActions } from '@org/commom/store'
+import { userCartSelector } from '@org/commom/store'
 import { ProductListComponent } from '../product-list/product-list.component';
-import { Product } from '@org/product';
+import { Product } from '@org/commom/store';
 
 @Component({
   selector: 'org-cart',
@@ -21,6 +21,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(cartActions.loadCartById({id: 1}))
+    console.log(this.cart$)
   }
 
   delete(product: Product){

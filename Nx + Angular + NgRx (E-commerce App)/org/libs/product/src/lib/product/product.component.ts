@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { productActions } from '../store/product.action';
-import { productFeature } from '../store/product.state';
+import { productActions } from '@org/commom/store';
+import { productFeature } from '@org/commom/store';
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
-import { Product } from '../store/product';
+import { Product } from '@org/commom/store';
+import { cartActions } from '@org/commom/store';
 
 @Component({
   selector: 'org-product',
@@ -29,7 +30,7 @@ export class ProductComponent {
   constructor(private readonly store: Store) {}
 
   addToCart(product: Product) {
-    console.log(product);
+    this.store.dispatch(cartActions.addProductToCart({ product }));
   }
 
 }

@@ -7,8 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../store/login.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { userActions } from '../store/user.action';
-import { userFeature } from '../store/user.state';
+import { userActions } from '../../../../commom/store/src/lib/user/user.action';
+import { userFeature } from '@org/commom/store';
+import { cartActions } from '@org/commom/store';
 
 @Component({
   selector: 'org-login',
@@ -42,6 +43,7 @@ export class LoginComponent {
         next: () => {
           this.loginService.isLoggedIn = true;
           this.store.dispatch(userActions.loadUserProfile({ id: 2 }))
+          this.store.dispatch(cartActions.loadCartById({id: 1}))
           this.store.select(userFeature.selectUser).subscribe({
             next: (res) => {
               console.log(res)

@@ -10,7 +10,7 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { CategoryEffects, categoryFeature } from '@org/category';
-import { userFeature, loadUserProfile } from '@org/user';
+import { userFeature, loadUserProfile } from '@org/commom/store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
