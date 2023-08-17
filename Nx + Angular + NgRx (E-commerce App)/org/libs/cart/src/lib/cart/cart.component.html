@@ -10,4 +10,9 @@
     <p>{{ cart.user.address.street }}</p>
     <p>{{ cart.user.address.city }}</p>
   </div>
+
+  <h2>Products</h2>
+
+  <org-product-list [products]="cart.productsDetails" (deleteProduct)="delete($event)"></org-product-list>
+
 </ng-container>

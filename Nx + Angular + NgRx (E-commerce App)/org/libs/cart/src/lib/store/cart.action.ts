@@ -7,7 +7,13 @@ export interface Cart {
   userId: number;
   date: Date;
   user?: User;
-  products: Product[];
+  products: [
+    {
+      productId: number;
+      quantity: number;
+    }
+  ],
+  productsDetails: Product[];
 }
 
 export const cartActions = createActionGroup({
@@ -19,5 +25,6 @@ export const cartActions = createActionGroup({
     loadCartById: props<{ id: number }>(),
     cartByIdSuccess: props<{ cart: Cart }>(),
     cartByIdFailure: props<{ error: string }>(),
+    addProductToCart: props<{ product: Product }>(),
   }
 })

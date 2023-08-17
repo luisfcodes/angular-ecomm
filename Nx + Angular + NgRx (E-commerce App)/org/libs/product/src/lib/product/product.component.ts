@@ -5,6 +5,7 @@ import { productActions } from '../store/product.action';
 import { productFeature } from '../store/product.state';
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
+import { Product } from '../store/product';
 
 @Component({
   selector: 'org-product',
@@ -26,5 +27,9 @@ export class ProductComponent {
   products$ = this.store.select(productFeature.selectProducts);
 
   constructor(private readonly store: Store) {}
+
+  addToCart(product: Product) {
+    console.log(product);
+  }
 
 }

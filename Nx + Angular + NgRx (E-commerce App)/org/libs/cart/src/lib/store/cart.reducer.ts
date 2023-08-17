@@ -34,5 +34,12 @@ export const cartReducer = createReducer(
     ...state,
     currentCart: undefined,
     error: action.error
-  }))
+  })),
+  // on(cartActions.addProductToCart, (state, action) => ({
+  //   ...state,
+  //   currentCart: {
+  //     ...state.currentCart,
+
+  //   }
+  // }))
 )
