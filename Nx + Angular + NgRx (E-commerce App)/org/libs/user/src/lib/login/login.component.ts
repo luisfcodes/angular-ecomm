@@ -27,8 +27,8 @@ import { cartActions } from '@org/commom/store';
 export class LoginComponent {
 
   loginForm = new FormGroup({
-    username: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-    password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)] }),
+    username: new FormControl('mor_2314', { nonNullable: true, validators: [Validators.required] }),
+    password: new FormControl('83r5^_', { nonNullable: true, validators: [Validators.required, Validators.minLength(5), Validators.maxLength(16)] }),
   })
 
   constructor(
