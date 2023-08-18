@@ -1,0 +1,31 @@
+<ng-container *ngIf="cart$ | async as cart">
+  <p>Name: {{cart.user.name.firstname}} {{cart.user.name.lastname}}</p>
+  <p>Email: {{cart.user.email}}</p>
+  <p>Phone: {{cart.user.phone}}</p>
+  <p>Address: {{cart.user.address.street}}, {{cart.user.address.city}}</p>
+
+  <strong>Amount: {{ cart.productsDetails | totalAmount }}</strong>
+
+  <form [formGroup]="checkoutForm">
+    <mat-form-field>
+      <input matInput placeholder="Credit Card Number" formControlName="creditCartNumber">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Expiry" formControlName="creditCartExpiration">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="CVV" formControlName="creditCartCVV">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name On Card" formControlName="nameOnCard">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="placeOrder(cart.id)" [disabled]="checkoutForm.invalid">
+      Pay and Place Order
+    </button>
+  </form>
+
+</ng-container>
+
+
+

@@ -13,4 +13,6 @@
 
   <org-product-list [products]="cart.productsDetails" (deleteProduct)="delete($event)"></org-product-list>
 
+  <button mat-raised-button color="primary" (click)="checkout()">Checkout</button>
+
 </ng-container>

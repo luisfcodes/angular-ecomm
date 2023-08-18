@@ -45,6 +45,14 @@ export const appRoutes: Route[] = [
   {
     path: 'profile',
     loadComponent: () => import('@org/user').then((m) => m.ProfileComponent),
-    // canMatch: [loginGuard],
+    canMatch: [loginGuard],
+  },
+  {
+    path: 'orders',
+    loadComponent: () => import('@org/orders').then((m) => m.OrdersComponent),
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('@org/checkout').then((m) => m.CheckoutComponent),
   }
 ];
