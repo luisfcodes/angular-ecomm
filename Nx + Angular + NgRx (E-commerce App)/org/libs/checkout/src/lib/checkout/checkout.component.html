@@ -20,7 +20,7 @@
       <input matInput placeholder="Name On Card" formControlName="nameOnCard">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="placeOrder(cart.id)" [disabled]="checkoutForm.invalid">
+    <button mat-raised-button color="primary" (click)="placeOrder(cart.productDetails)" [disabled]="checkoutForm.invalid">
       Pay and Place Order
     </button>
   </form>

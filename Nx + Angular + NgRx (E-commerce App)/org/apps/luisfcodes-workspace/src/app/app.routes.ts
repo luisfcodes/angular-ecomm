@@ -1,8 +1,10 @@
 import { Route } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
-import { cartFeature, loadCart, loadCartById } from '@org/commom/store';
+import { cartFeature, loadCart, loadCartById, orderFeature } from '@org/commom/store';
 import { loadProducts, productFeature, loadProductsByCategory } from '@org/commom/store';
+
+//eslint-disable-next-line
 import { loginGuard } from '@org/user'
 
 export const appRoutes: Route[] = [
@@ -54,5 +56,8 @@ export const appRoutes: Route[] = [
   {
     path: 'checkout',
     loadComponent: () => import('@org/checkout').then((m) => m.CheckoutComponent),
+    providers: [
+      provideState(orderFeature),
+    ]
   }
 ];

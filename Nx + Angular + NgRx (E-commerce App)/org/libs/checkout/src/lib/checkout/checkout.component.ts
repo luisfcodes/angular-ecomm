@@ -5,8 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Store } from '@ngrx/store';
-import { userCartSelector } from '@org/commom/store';
+import { Product, orderActions, userCartSelector } from '@org/commom/store';
 import { TotalAmountPipe } from '../total-amount.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'org-checkout',
@@ -27,7 +28,11 @@ export class CheckoutComponent implements OnInit {
 
   cart$ = this.store.select(userCartSelector)
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.checkoutForm = this.fb.group({
@@ -38,7 +43,17 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  placeOrder(cartId: number){
-    console.log('Placing order for cart id: ', cartId)
+  placeOrder(products: Product[]){
+    this.store.dispatch(orderActions.placeOrder({
+      order: {
+        id: 1,
+        userId: 2,
+        status: 'Placed',
+        totalAmount: 0,
+        date: new Date(),
+        products: products
+      }
+    }))
+    this.router.navigate(['/orders'])
   }
 }
