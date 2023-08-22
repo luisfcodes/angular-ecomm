@@ -7,9 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../store/login.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { userActions } from '../../../../commom/store/src/lib/user/user.action';
-import { userFeature } from '@org/commom/store';
-import { cartActions } from '@org/commom/store';
+import { userActions, userFeature, cartActions } from '@org/commom/store';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'org-login',
@@ -34,7 +33,8 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    public auth: AuthService
   ) { }
 
   login() {

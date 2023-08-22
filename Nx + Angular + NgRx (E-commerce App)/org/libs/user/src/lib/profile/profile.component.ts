@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { User } from '@org/commom/store';
 import { Store } from '@ngrx/store';
 import { userFeature } from '@org/commom/store';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'org-profile',
@@ -19,6 +20,7 @@ import { userFeature } from '@org/commom/store';
 })
 export class ProfileComponent implements OnInit {
   mySignal = signal(0)
+
   transformedSignalIntoObservable = toObservable(this.mySignal) // toObservable is a function that converts a Signal into an Observable
 
   user = toSignal(this.userService.getUser()) // toSignal is a function that converts an Observable into a Signal
@@ -32,7 +34,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    private store: Store
+    private store: Store,
+    public auth: AuthService
   ) { }
 
   get address(){
