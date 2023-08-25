@@ -10,6 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "allowedCommonJsDependencies": ["cross-fetch", "isomorphic-form-data"],
         "outputPath": "dist/apps/hiya-store",
         "index": "apps/hiya-store/src/index.html",
         "main": "apps/hiya-store/src/main.ts",
@@ -17,9 +18,14 @@
         "tsConfig": "apps/hiya-store/tsconfig.app.json",
         "assets": [
           "apps/hiya-store/src/favicon.ico",
-          "apps/hiya-store/src/assets"
+          "apps/hiya-store/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+            "output": "/assets/"
+          }
         ],
-        "styles": ["apps/hiya-store/src/styles.scss"],
+        "styles": ["apps/hiya-store/src/styles.scss", "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
         "scripts": []
       },
       "configurations": {

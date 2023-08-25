@@ -1,3 +1,4 @@
+import { provideHttpClient } from '@angular/common/http';
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { AppWriteConfigToken, AppWriteService, appWriteConfig } from '@org/app-write';
 
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
       useFactory: appWriteConfig,
       deps: [AppWriteService],
       multi: true
-    }
+    },
+    provideHttpClient(),
   ],
 };

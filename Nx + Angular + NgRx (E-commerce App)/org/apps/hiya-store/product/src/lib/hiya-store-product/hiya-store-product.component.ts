@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductActions, ProductService } from './state/product.service';
+import { ProductActions, ProductService as ProductServiceHiya } from './state/product.service';
 import { RxActionFactory } from '@rx-angular/state/actions';
 import { tap } from 'rxjs';
-import { Account, Client, ID, Databases } from 'appwrite';
+// import { Account, Client, ID, Databases } from 'appwrite';
 import { AppWriteService } from '@org/app-write';
+import { ProductService } from '@org/commom/store';
 
 @Component({
   selector: 'org-hiya-store-product',
@@ -12,7 +13,7 @@ import { AppWriteService } from '@org/app-write';
   imports: [CommonModule],
   templateUrl: './hiya-store-product.component.html',
   styleUrls: ['./hiya-store-product.component.css'],
-  providers: [ProductService, RxActionFactory]
+  providers: [ProductServiceHiya, RxActionFactory]
 })
 export class HiyaStoreProductComponent implements OnInit {
 
@@ -27,9 +28,10 @@ export class HiyaStoreProductComponent implements OnInit {
   // client = new Client();
 
   constructor(
-    private productState: ProductService,
+    private productState: ProductServiceHiya,
     private factory: RxActionFactory<ProductActions>,
-    private appWriteService: AppWriteService
+    private appWriteService: AppWriteService,
+    private productService: ProductService
   ) {
     this.productState.set({
       id: '1',
@@ -47,7 +49,8 @@ export class HiyaStoreProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const account = new Account(this.appWriteService.client);
+    console.log('NgOnInit HiyaStoreProductComponent')
+    // const account = new Account(this.appWriteService.client);
 
     // account.create(ID.unique(), 'luisfcodes@example.com', 'password', 'John Doe')
     //   .then(response => {
@@ -56,25 +59,36 @@ export class HiyaStoreProductComponent implements OnInit {
     //     console.log(error);
     //   })
 
-    const db = new Databases(this.appWriteService.client)
-    db.createDocument('64e79ecba4cbbd19c7d0', '64e7cbbd736536c1cf09', ID.unique(), {
-      name: 'Product 1',
-      // description: 'Product 1 description',
-      // price: 100,
-      // imageUrl: 'https://picsum.photos/200',
-      // quantity: 1
-
-    })
+    // const db = new Databases(this.appWriteService.client)
+    // db.createDocument('64e79ecba4cbbd19c7d0', '64e7cbbd736536c1cf09', ID.unique(), {
+    //   name: 'Product 1',
+    //   description: 'Product 1 description',
+    //   price: 100,
+    //   imageUrl: 'https://picsum.photos/200',
+    //   quantity: 1
+    // })
   }
 
   addProduct() {
-    this.actions.addProduct({
-      id: '2',
+    // this.actions.addProduct({
+    //   id: '2',
+    //   name: 'Product 2',
+    //   description: 'Product 2 description',
+    //   price: 200,
+    //   imageUrl: 'https://picsum.photos/200',
+    //   quantity: 1
+    // })
+
+    this.productService.addProduct({
+      id: 2,
       name: 'Product 2',
       description: 'Product 2 description',
       price: 200,
       imageUrl: 'https://picsum.photos/200',
-      quantity: 1
+      quantity: 1,
+      category: 'electronics'
+    }).subscribe(response => {
+      console.log(response);
     })
   }
 }
