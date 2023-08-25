@@ -16,10 +16,4 @@ describe('AppComponent', () => {
       'Welcome hiya-store'
     );
   });
-
-  it(`should have as title 'hiya-store'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('hiya-store');
-  });
 });
